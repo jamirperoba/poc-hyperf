@@ -1,0 +1,40 @@
+version: '3'
+services:
+  hyperf-skeleton:
+    container_name: poc-hyperf
+    image: hyperf-skeleton
+    build:
+      context: .
+    volumes:
+      - ./:/opt/www
+    command: /bin/sh
+    privileged: true
+    user: root
+    ports:
+      - "9501:9501"
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: hyperf_database
+      DB_USERNAME: root
+      DB_PASSWORD: root
+    networks:
+      - hyperf-network
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - "hyperf-database:/var/lib/mysql"
+    networks:
+      - hyperf-network
+networks:
+  hyperf-network:
+    name: hyperf-network
+    driver: bridge
+
+volumes:
+  hyperf-database:
+
