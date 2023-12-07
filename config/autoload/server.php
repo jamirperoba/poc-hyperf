@@ -26,8 +26,11 @@ return [
                 Event::ON_REQUEST => [Hyperf\HttpServer\Server::class, 'onRequest'],
             ],
             'options' => [
-                // Whether to enable request lifecycle event
-                'enable_request_lifecycle' => false,
+                'file_reload' => [
+                    'enable' => true, // Ativado apenas para ambiente de desenvolvimento
+                    'interval' => 2,
+                    'include' => BASE_PATH . '*.php',
+                ],
             ],
         ],
     ],
