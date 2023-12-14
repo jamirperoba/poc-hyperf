@@ -6,7 +6,7 @@
 # @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
 
 FROM hyperf/hyperf:8.1-alpine-v3.18-swoole-v5.0
-LABEL maintainer="Jamir Peroba" app.name="POC Hyperf"
+LABEL maintainer="Jamir Alves Peroba" app.name="POC Hyperf"
 
 ##
 # ---------- env settings ----------
@@ -45,8 +45,8 @@ WORKDIR /opt/www
 COPY ./composer.* /opt/www/
 RUN composer install --no-dev --no-scripts
 #
-#COPY . /opt/www
-#RUN composer install --no-dev -o && php bin/hyperf.php
+COPY . /opt/www
+RUN composer install --no-dev -o && php bin/hyperf.php
 
 EXPOSE 9501
 
