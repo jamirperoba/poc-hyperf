@@ -7,6 +7,7 @@ services:
       context: .
     volumes:
       - ./:/opt/www
+    privileged: true
     ports:
       - "9501:9501"
     environment:
@@ -16,16 +17,19 @@ services:
       DB_DATABASE: hyperf_database
       DB_USERNAME: root
       DB_PASSWORD: root
-      command: /bin/sh -c 'watch -d -n 1 "find /opt/www -name '\''*.php'\'' | xargs md5sum && php /opt/www/bin/hyperf.php start"'
+      command: /bin/sh -c 'watch -d -n 1 "find /opt/www -name '\''config/*.php'\'' | xargs md5sum && php /opt/www/bin/hyperf.php start"'
 
     networks:
       - hyperf-network
 
   mysql:
-    image: mysql:5.7
+    image: mysql:8
     container_name: poc-hyperf-database
     environment:
+      MYSQL_DATABASE: hyperf_database
       MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
     volumes:
       - "hyperf-database:/var/lib/mysql"
     networks:

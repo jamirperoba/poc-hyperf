@@ -18,6 +18,9 @@ return [
     'app_name' => env('APP_NAME', 'skeleton'),
     'app_env' => env('APP_ENV', 'dev'),
     'scan_cacheable' => env('SCAN_CACHEABLE', false),
+    'cache' => [
+        'enable' => env('CACHE_ENABLE', false), // Defina como falso no ambiente local
+    ],
     StdoutLoggerInterface::class => [
         'log_level' => [
             LogLevel::ALERT,

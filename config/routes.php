@@ -9,10 +9,11 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+
+use App\Controller\IndexController;
 use Hyperf\HttpServer\Router\Router;
 
-Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
+Router::addRoute(['GET', 'POST', 'HEAD'], '/', [IndexController::class, 'index']);
 
-Router::get('/favicon.ico', function () {
-    return 'testes';
-});
+Router::post('/user', [\App\Controller\User\StoreController::class, 'index']);
+//Router::get('/user', [\App\Controller\User\ListController::class, 'index']);
