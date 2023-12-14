@@ -41,6 +41,12 @@ RUN set -ex \
 
 WORKDIR /opt/www
 
+# Adicionando o alias ao arquivo de perfil de shell
+RUN echo "alias hyperf='php /opt/www/bin/hyperf.php'" >> ~/.bashrc
+
+# Ativando o alias no início do container
+RUN source ~/.bashrc
+
 # Composer Cache
 COPY ./composer.* /opt/www/
 RUN composer install --no-dev --no-scripts
