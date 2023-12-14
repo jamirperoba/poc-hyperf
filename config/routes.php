@@ -16,4 +16,4 @@ use Hyperf\HttpServer\Router\Router;
 Router::addRoute(['GET', 'POST', 'HEAD'], '/', [IndexController::class, 'index']);
 
 Router::post('/user', [\App\Controller\User\StoreController::class, 'index']);
-//Router::get('/user', [\App\Controller\User\ListController::class, 'index']);
+Router::get('/user', [\App\Controller\User\ListController::class, 'index']);
